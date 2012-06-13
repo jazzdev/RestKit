@@ -130,17 +130,17 @@ extern NSString* const kRKStringBoundary;
 	// Generate the MIME header for this part
 	if (self.fileName && self.MIMEType) {
 		// Typical for file attachments
-		_MIMEHeader = [[[NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"%@\"; "
+		_MIMEHeader = [[[NSString stringWithFormat:@"\r\n--%@\r\nContent-Disposition: form-data; name=\"%@\"; "
 												   @"filename=\"%@\"\r\nContent-Type: %@\r\n\r\n", 
 						 [self MIMEBoundary], self.name, self.fileName, self.MIMEType] dataUsingEncoding:NSUTF8StringEncoding] retain];
 	} else if (self.MIMEType) {
 		// Typical for data values
-		_MIMEHeader = [[[NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"%@\"\r\n"
+		_MIMEHeader = [[[NSString stringWithFormat:@"\r\n--%@\r\nContent-Disposition: form-data; name=\"%@\"\r\n"
 												   @"Content-Type: %@\r\n\r\n", 
 						 [self MIMEBoundary], self.name, self.MIMEType] dataUsingEncoding:NSUTF8StringEncoding] retain];
 	} else {
 		// Typical for raw values
-		_MIMEHeader = [[[NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"%@\"\r\n\r\n", 
+		_MIMEHeader = [[[NSString stringWithFormat:@"\r\n--%@\r\nContent-Disposition: form-data; name=\"%@\"\r\n\r\n", 
 						 [self MIMEBoundary], self.name] 
 						dataUsingEncoding:NSUTF8StringEncoding] retain];
 	}
