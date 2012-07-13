@@ -88,6 +88,11 @@
 ///-----------------------------------------------------------------------------
 
 /**
+ DocuSign-Specific, I don't see a clean way to do this in a subclass.
+ */
+@property (nonatomic, copy) NSString *documentID;
+
+/**
  The parameter name of this attachment in the multi-part document.
  */
 @property (nonatomic, retain) NSString *name;
