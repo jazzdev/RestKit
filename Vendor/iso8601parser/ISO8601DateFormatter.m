@@ -624,8 +624,6 @@ static BOOL is_leap_year(NSUInteger year);
 		*outTimeZone = timeZone;
 	parsingCalendar.timeZone = timeZone;
     
-    NSLog(@"TIMEZONE: %@", timeZone);
-
 	return [parsingCalendar dateFromComponents:components];
 }
 
