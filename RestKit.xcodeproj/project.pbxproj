@@ -165,7 +165,6 @@
 		25160ECD1456532C0060A5C5 /* GCOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 25160E901456532C0060A5C5 /* GCOAuth.m */; };
 		25160ECE1456532C0060A5C5 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 25160E911456532C0060A5C5 /* NSData+Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		25160ECF1456532C0060A5C5 /* NSData+Base64.h in Headers */ = {isa = PBXBuildFile; fileRef = 25160E911456532C0060A5C5 /* NSData+Base64.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		25160ED01456532C0060A5C5 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 25160E921456532C0060A5C5 /* NSData+Base64.m */; };
 		25160ED11456532C0060A5C5 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 25160E921456532C0060A5C5 /* NSData+Base64.m */; };
 		25160ED31456532C0060A5C5 /* FileMD5Hash.c in Sources */ = {isa = PBXBuildFile; fileRef = 25160E951456532C0060A5C5 /* FileMD5Hash.c */; };
 		25160ED41456532C0060A5C5 /* FileMD5Hash.c in Sources */ = {isa = PBXBuildFile; fileRef = 25160E951456532C0060A5C5 /* FileMD5Hash.c */; };
@@ -2665,7 +2664,6 @@
 				25160E50145650490060A5C5 /* RKPathMatcher.m in Sources */,
 				25160E52145650490060A5C5 /* RKSearchEngine.m in Sources */,
 				25160ECC1456532C0060A5C5 /* GCOAuth.m in Sources */,
-				25160ED01456532C0060A5C5 /* NSData+Base64.m in Sources */,
 				25160ED31456532C0060A5C5 /* FileMD5Hash.c in Sources */,
 				25160EDF1456532C0060A5C5 /* JSONKit.m in Sources */,
 				25160EE41456532C0060A5C5 /* lcl.m in Sources */,
