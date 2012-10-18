@@ -260,11 +260,10 @@
         [fetchRequest setSortDescriptors:_sortDescriptors];
     }
     
-    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+    self.fetchedResultsController = [[[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                         managedObjectContext:[NSManagedObjectContext contextForCurrentThread]
                                                                           sectionNameKeyPath:_sectionNameKeyPath
-                                                                                   cacheName:_cacheName];
-    [self.fetchedResultsController release];
+                                                                                   cacheName:_cacheName] autorelease];
     self.fetchedResultsController.delegate = self;
 
     // Perform the load
