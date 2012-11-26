@@ -149,7 +149,7 @@
     RKXMLParserXMLReader *parser = [[RKXMLParserXMLReader new] autorelease];
     NSException *exception = nil;
     @try {
-        [parser objectFromString:XML error:&error];;
+        [parser objectFromString:XML error:&error];
     }
     @catch (NSException *e) {
         exception = e;

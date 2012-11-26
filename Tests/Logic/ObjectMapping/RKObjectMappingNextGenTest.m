@@ -538,7 +538,7 @@
 
 
     NSSortDescriptor *sortByName = [[[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES] autorelease];
-    NSArray *descriptors = [NSArray arrayWithObject:sortByName];;
+    NSArray *descriptors = [NSArray arrayWithObject:sortByName];
     NSArray *users = [group.users sortedArrayUsingDescriptors:descriptors];
     RKTestUser *user = [users objectAtIndex:0];
     assertThatBool([user isKindOfClass:[RKTestUser class]], is(equalToBool(YES)));

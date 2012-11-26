@@ -68,8 +68,8 @@
     NSString *texto = @"more text";
     NSData *data = [RKTestFixture dataWithContentsOfFixture:@"blake.png"];
     NSNumber *cel = [NSNumber numberWithFloat:1.232442];
-    NSNumber *lon = [NSNumber numberWithFloat:18231.232442];;
-    NSNumber *lat = [NSNumber numberWithFloat:13213123.232442];;
+    NSNumber *lon = [NSNumber numberWithFloat:18231.232442];
+    NSNumber *lat = [NSNumber numberWithFloat:13213123.232442];
 
     RKParams *params = [RKParams params];
 
