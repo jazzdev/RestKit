@@ -376,6 +376,7 @@ static RKManagedObjectStore *defaultObjectStore = nil;
 
     // Recreate the MOC
     self.primaryManagedObjectContext = [[self newManagedObjectContext] autorelease];
+    [self save:nil];
 }
 
 - (void)deletePersistentStore
