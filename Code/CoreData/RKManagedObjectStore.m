@@ -164,7 +164,7 @@ static RKManagedObjectStore *defaultObjectStore = nil;
 - (void)setThreadLocalObject:(id)value forKey:(id)key
 {
     NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];
-    NSString *objectStoreKey = [NSString stringWithFormat:@"RKManagedObjectStore_%p", self];
+    NSString *objectStoreKey = [NSString stringWithFormat:@"PrimaryRKManagedObjectContext_%p", self.primaryManagedObjectContext];
     if (! [threadDictionary valueForKey:objectStoreKey]) {
         [threadDictionary setValue:[NSMutableDictionary dictionary] forKey:objectStoreKey];
     }
@@ -175,7 +175,7 @@ static RKManagedObjectStore *defaultObjectStore = nil;
 - (id)threadLocalObjectForKey:(id)key
 {
     NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];
-    NSString *objectStoreKey = [NSString stringWithFormat:@"RKManagedObjectStore_%p", self];
+    NSString *objectStoreKey = [NSString stringWithFormat:@"PrimaryRKManagedObjectContext_%p", self.primaryManagedObjectContext];
     if (! [threadDictionary valueForKey:objectStoreKey]) {
         [threadDictionary setObject:[NSMutableDictionary dictionary] forKey:objectStoreKey];
     }
@@ -186,7 +186,7 @@ static RKManagedObjectStore *defaultObjectStore = nil;
 - (void)removeThreadLocalObjectForKey:(id)key
 {
     NSMutableDictionary *threadDictionary = [[NSThread currentThread] threadDictionary];
-    NSString *objectStoreKey = [NSString stringWithFormat:@"RKManagedObjectStore_%p", self];
+    NSString *objectStoreKey = [NSString stringWithFormat:@"PrimaryRKManagedObjectContext_%p", self.primaryManagedObjectContext];
     if (! [threadDictionary valueForKey:objectStoreKey]) {
         [threadDictionary setObject:[NSMutableDictionary dictionary] forKey:objectStoreKey];
     }
