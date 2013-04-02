@@ -21,11 +21,11 @@
                                                             [path pathExtension]]];
 
         if ([[SSFileManagerFactory defaultManager] fileExistsAtPath:path2x]) {
-            return [self initWithCGImage:[[UIImage imageWithData:[NSData dataWithContentsOfFile:path2x]] CGImage] scale:2.0 orientation:UIImageOrientationUp];
+            return [self initWithCGImage:[[UIImage imageWithData:[[SSFileManagerFactory defaultManager] dataWithContentsOfFile:path2x]] CGImage] scale:2.0 orientation:UIImageOrientationUp];
         }
     }
 
-    return [self initWithData:[NSData dataWithContentsOfFile:path]];
+    return [self initWithData:[[SSFileManagerFactory defaultManager] dataWithContentsOfFile:path]];
 }
 
 + (UIImage *)imageWithContentsOfResolutionIndependentFile:(NSString *)path

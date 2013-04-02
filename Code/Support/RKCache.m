@@ -139,7 +139,7 @@
     NSDictionary *dictionary = nil;
     NSString *cachePath = [self pathForCacheKey:cacheKey];
     if (cachePath) {
-        dictionary = [NSDictionary dictionaryWithContentsOfFile:cachePath];
+        dictionary = [[SSFileManagerFactory defaultManager] dictionaryWithContentsOfFile:cachePath];
         if (dictionary) {
             RKLogDebug(@"Read cached dictionary '%@' from cachePath '%@' for '%@'", dictionary, cachePath, cacheKey);
         } else {
@@ -158,7 +158,7 @@
     NSData *data = nil;
     NSString *cachePath = [self pathForCacheKey:cacheKey];
     if (cachePath) {
-        data = [NSData dataWithContentsOfFile:cachePath];
+        data = [[SSFileManagerFactory defaultManager] dataWithContentsOfFile:cachePath];
         if (data) {
             RKLogDebug(@"Read cached data '%@' from cachePath '%@' for '%@'", data, cachePath, cacheKey);
         } else {

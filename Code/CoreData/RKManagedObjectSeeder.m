@@ -125,7 +125,7 @@ NSString * const RKDefaultSeedDatabaseFileName = @"RKSeedDatabase.sqlite";
     }
 
     NSString *filePath = [nilOrBundle pathForResource:fileName ofType:nil];
-    NSString *payload = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+    NSString *payload = [[SSFileManagerFactory nativeManager] stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
 
     if (payload) {
         NSString *MIMEType = [fileName MIMETypeForPathExtension];
