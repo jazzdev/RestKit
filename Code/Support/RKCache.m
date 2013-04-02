@@ -105,7 +105,7 @@
     if (dictionary) {
         [_cacheLock lock];
         RKLogTrace(@"Writing dictionary to cache key: '%@'", cacheKey);
-        BOOL success = [dictionary writeToFile:[self pathForCacheKey:cacheKey] atomically:YES];
+        BOOL success = [[SSFileManagerFactory defaultManager] writeDictionary:dictionary toFile:[self pathForCacheKey:cacheKey] atomically:YES];
         if (success) {
             RKLogTrace(@"Wrote cached dictionary to cacheKey '%@'", cacheKey);
         } else {
@@ -122,7 +122,7 @@
         NSString *cachePath = [self pathForCacheKey:cacheKey];
         if (cachePath) {
             NSError *error = nil;
-            BOOL success = [data writeToFile:cachePath options:NSDataWritingAtomic error:&error];
+            BOOL success = [[SSFileManagerFactory defaultManager] writeData:data toFile:cachePath options:NSDataWritingAtomic error:&error];
             if (success) {
                 RKLogTrace(@"Wrote cached data to path '%@'", cachePath);
             } else {
