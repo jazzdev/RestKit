@@ -21,6 +21,7 @@
 #import <CoreData/CoreData.h>
 #import "RKManagedObjectMapping.h"
 #import "RKManagedObjectCaching.h"
+#import <sscommon/SSPersistentStoreCoordinator.h>
 
 @class RKManagedObjectStore;
 
@@ -59,7 +60,7 @@ extern NSString * const RKManagedObjectStoreDidFailSaveNotification;
 
 // Core Data
 @property (nonatomic, readonly) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, readonly) SSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 ///-----------------------------------------------------------------------------
 /// @name Accessing the Default Object Store

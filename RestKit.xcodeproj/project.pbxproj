@@ -3252,7 +3252,7 @@
 				GCC_PREFIX_HEADER = "Code/Support/RestKit-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"${SDKROOT}/usr/include/libxml2",
-					"\"$(BUILT_PRODUCTS_DIR)/include",
+					"\"$(BUILT_PRODUCTS_DIR)/include\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OBJROOT = "$(SRCROOT)/Build";

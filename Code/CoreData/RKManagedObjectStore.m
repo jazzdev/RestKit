@@ -314,7 +314,7 @@ static RKManagedObjectStore *defaultObjectStore = nil;
         RKLogInfo(@"No existing database found, copying from seed path '%@'", seedDatabasePath);
 
         NSError *error;
-        if (![[SSFileManagerFactory defaultManager] copyItemAtPath:seedDatabasePath toPath:self.pathToStoreFile error:&error]) {
+        if (![[SSFileManagerFactory defaultManager] importItemAtPath:seedDatabasePath toPath:self.pathToStoreFile error:&error]) {
             if (self.delegate != nil && [self.delegate respondsToSelector:@selector(managedObjectStore:didFailToCopySeedDatabase:error:)]) {
                 [self.delegate managedObjectStore:self didFailToCopySeedDatabase:seedDatabase error:error];
             } else {
@@ -332,7 +332,7 @@ static RKManagedObjectStore *defaultObjectStore = nil;
     NSURL *storeURL = [NSURL fileURLWithPath:self.pathToStoreFile];
 
     NSError *error;
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_managedObjectModel];
+    _persistentStoreCoordinator = [[SSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_managedObjectModel];
 
     // Allow inferred migration from the original version of the application.
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
