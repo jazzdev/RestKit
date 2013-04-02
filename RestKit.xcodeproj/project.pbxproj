@@ -758,6 +758,27 @@
 			remoteGlobalIDString = 25160E61145651060060A5C5;
 			remoteInfo = RestKitFramework;
 		};
+		889EDB18170B561E00E81A1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 889EDB12170B561D00E81A1D /* SSCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A4B40EDC16B204BC0095BC1C;
+			remoteInfo = SSCommon;
+		};
+		889EDB1A170B561E00E81A1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 889EDB12170B561D00E81A1D /* SSCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5DBD033816D2CB9A0004F606;
+			remoteInfo = SSCommonGD;
+		};
+		889EDB1C170B561E00E81A1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 889EDB12170B561D00E81A1D /* SSCommon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5DFF1B2E1704CBFE00A9D2EB;
+			remoteInfo = SSCommonVeracode;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1227,6 +1248,7 @@
 		73DA8E1B14D1BA960054DD73 /* RKObjectMappingProvider+CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RKObjectMappingProvider+CoreData.m"; sourceTree = "<group>"; };
 		73DA8E2014D1C3870054DD73 /* RKObjectMappingProviderContextEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKObjectMappingProviderContextEntry.h; sourceTree = "<group>"; };
 		73DA8E2114D1C3870054DD73 /* RKObjectMappingProviderContextEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKObjectMappingProviderContextEntry.m; sourceTree = "<group>"; };
+		889EDB12170B561D00E81A1D /* SSCommon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SSCommon.xcodeproj; path = ../sscommon/SSCommon.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1304,6 +1326,7 @@
 		25160D0B14564E810060A5C5 = {
 			isa = PBXGroup;
 			children = (
+				889EDB11170B55FA00E81A1D /* Dependencies */,
 				25160D44145650490060A5C5 /* Code */,
 				25160FC51456F2330060A5C5 /* Tests */,
 				25EC1AD614F8022600C3CF3F /* Resources */,
@@ -2131,6 +2154,24 @@
 			name = iso8601parser;
 			sourceTree = "<group>";
 		};
+		889EDB11170B55FA00E81A1D /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				889EDB12170B561D00E81A1D /* SSCommon.xcodeproj */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		889EDB13170B561D00E81A1D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				889EDB19170B561E00E81A1D /* libSSCommon.a */,
+				889EDB1B170B561E00E81A1D /* libSSCommonGD.a */,
+				889EDB1D170B561E00E81A1D /* libSSCommonVeracode.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -2514,6 +2555,12 @@
 			mainGroup = 25160D0B14564E810060A5C5;
 			productRefGroup = 25160D1714564E810060A5C5 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 889EDB13170B561D00E81A1D /* Products */;
+					ProjectRef = 889EDB12170B561D00E81A1D /* SSCommon.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				25160D1514564E810060A5C5 /* RestKit */,
@@ -2524,6 +2571,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		889EDB19170B561E00E81A1D /* libSSCommon.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSSCommon.a;
+			remoteRef = 889EDB18170B561E00E81A1D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		889EDB1B170B561E00E81A1D /* libSSCommonGD.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSSCommonGD.a;
+			remoteRef = 889EDB1A170B561E00E81A1D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		889EDB1D170B561E00E81A1D /* libSSCommonVeracode.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSSCommonVeracode.a;
+			remoteRef = 889EDB1C170B561E00E81A1D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		25160D2314564E820060A5C5 /* Resources */ = {
@@ -3179,7 +3250,10 @@
 				"ARCHS[sdk=iphoneos6.0]" = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Code/Support/RestKit-Prefix.pch";
-				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
+				HEADER_SEARCH_PATHS = (
+					"${SDKROOT}/usr/include/libxml2",
+					"\"$(BUILT_PRODUCTS_DIR)/include",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OBJROOT = "$(SRCROOT)/Build";
 				OTHER_LDFLAGS = "-ObjC";
@@ -3201,7 +3275,10 @@
 				"ARCHS[sdk=iphoneos6.0]" = "$(ARCHS_STANDARD_32_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Code/Support/RestKit-Prefix.pch";
-				HEADER_SEARCH_PATHS = "${SDKROOT}/usr/include/libxml2";
+				HEADER_SEARCH_PATHS = (
+					"${SDKROOT}/usr/include/libxml2",
+					"\"$(BUILT_PRODUCTS_DIR)/include",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OBJROOT = "$(SRCROOT)/Build";
 				OTHER_LDFLAGS = "-ObjC";

@@ -86,7 +86,7 @@ extern NSString * const kRKStringBoundary;
 {
     self = [self initWithName:name];
     if (self) {
-        NSAssert1([[NSFileManager defaultManager] fileExistsAtPath:filePath], @"Expected file to exist at path: %@", filePath);
+        NSAssert1([[SSFileManagerFactory defaultManager] fileExistsAtPath:filePath], @"Expected file to exist at path: %@", filePath);
         _filePath = [filePath retain];
         _fileName = [[filePath lastPathComponent] retain];
         NSString *MIMEType = [filePath MIMETypeForPathExtension];
@@ -95,7 +95,7 @@ extern NSString * const kRKStringBoundary;
         _bodyStream = [[NSInputStream alloc] initWithFileAtPath:filePath];
 
         NSError *error;
-        NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:&error];
+        NSDictionary *attributes = [[SSFileManagerFactory defaultManager] attributesOfItemAtPath:filePath error:&error];
         if (attributes) {
             _bodyLength    = [[attributes objectForKey:NSFileSize] unsignedIntegerValue];
         }

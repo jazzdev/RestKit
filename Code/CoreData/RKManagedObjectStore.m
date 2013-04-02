@@ -78,8 +78,8 @@ static RKManagedObjectStore *defaultObjectStore = nil;
 {
     NSURL *storeURL = [NSURL fileURLWithPath:path];
     NSError *error = nil;
-    if ([[NSFileManager defaultManager] fileExistsAtPath:storeURL.path]) {
-        if (! [[NSFileManager defaultManager] removeItemAtPath:storeURL.path error:&error]) {
+    if ([[SSFileManagerFactory defaultManager] fileExistsAtPath:storeURL.path]) {
+        if (! [[SSFileManagerFactory defaultManager] removeItemAtPath:storeURL.path error:&error]) {
             NSAssert(NO, @"Managed object store failed to delete persistent store : %@", error);
         }
     } else {
@@ -126,7 +126,7 @@ static RKManagedObjectStore *defaultObjectStore = nil;
         } else {
             // If path given, caller is responsible for directory's existence
             BOOL isDir;
-            NSAssert1([[NSFileManager defaultManager] fileExistsAtPath:nilOrDirectoryPath isDirectory:&isDir] && isDir == YES, @"Specified storage directory exists", nilOrDirectoryPath);
+            NSAssert1([[SSFileManagerFactory defaultManager] fileExistsAtPath:nilOrDirectoryPath isDirectory:&isDir] && isDir == YES, @"Specified storage directory exists", nilOrDirectoryPath);
         }
         _pathToStoreFile = [[nilOrDirectoryPath stringByAppendingPathComponent:_storeFilename] retain];
 
@@ -308,20 +308,20 @@ static RKManagedObjectStore *defaultObjectStore = nil;
 
 - (void)createStoreIfNecessaryUsingSeedDatabase:(NSString *)seedDatabase
 {
-    if (NO == [[NSFileManager defaultManager] fileExistsAtPath:self.pathToStoreFile]) {
+    if (NO == [[SSFileManagerFactory defaultManager] fileExistsAtPath:self.pathToStoreFile]) {
         NSString *seedDatabasePath = [[NSBundle mainBundle] pathForResource:seedDatabase ofType:nil];
         NSAssert1(seedDatabasePath, @"Unable to find seed database file '%@' in the Main Bundle, aborting...", seedDatabase);
         RKLogInfo(@"No existing database found, copying from seed path '%@'", seedDatabasePath);
 
         NSError *error;
-        if (![[NSFileManager defaultManager] copyItemAtPath:seedDatabasePath toPath:self.pathToStoreFile error:&error]) {
+        if (![[SSFileManagerFactory defaultManager] copyItemAtPath:seedDatabasePath toPath:self.pathToStoreFile error:&error]) {
             if (self.delegate != nil && [self.delegate respondsToSelector:@selector(managedObjectStore:didFailToCopySeedDatabase:error:)]) {
                 [self.delegate managedObjectStore:self didFailToCopySeedDatabase:seedDatabase error:error];
             } else {
                 RKLogError(@"Encountered an error during seed database copy: %@", [error localizedDescription]);
             }
         }
-        NSAssert1([[NSFileManager defaultManager] fileExistsAtPath:seedDatabasePath], @"Seed database not found at path '%@'!", seedDatabasePath);
+        NSAssert1([[SSFileManagerFactory defaultManager] fileExistsAtPath:seedDatabasePath], @"Seed database not found at path '%@'!", seedDatabasePath);
     }
 }
 
@@ -352,8 +352,8 @@ static RKManagedObjectStore *defaultObjectStore = nil;
 {
     NSURL *storeURL = [NSURL fileURLWithPath:self.pathToStoreFile];
     NSError *error = nil;
-    if ([[NSFileManager defaultManager] fileExistsAtPath:storeURL.path]) {
-        if (![[NSFileManager defaultManager] removeItemAtPath:storeURL.path error:&error]) {
+    if ([[SSFileManagerFactory defaultManager] fileExistsAtPath:storeURL.path]) {
+        if (![[SSFileManagerFactory defaultManager] removeItemAtPath:storeURL.path error:&error]) {
             if (self.delegate != nil && [self.delegate respondsToSelector:@selector(managedObjectStore:didFailToDeletePersistentStore:error:)]) {
                 [self.delegate managedObjectStore:self didFailToDeletePersistentStore:self.pathToStoreFile error:error];
             }

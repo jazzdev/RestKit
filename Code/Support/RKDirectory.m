@@ -32,7 +32,7 @@
 
 #else
 
-    NSFileManager *sharedFM = [NSFileManager defaultManager];
+    SSFileManager *sharedFM = [SSFileManagerFactory defaultManager];
 
     NSArray *possibleURLs = [sharedFM URLsForDirectory:NSApplicationSupportDirectory
                                              inDomains:NSUserDomainMask];
@@ -71,7 +71,7 @@
 + (BOOL)ensureDirectoryExistsAtPath:(NSString *)path error:(NSError **)error
 {
     BOOL isDirectory;
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory]) {
+    if ([[SSFileManagerFactory defaultManager] fileExistsAtPath:path isDirectory:&isDirectory]) {
         if (isDirectory) {
             // Exists at a path and is a directory, we're good
             if (error) *error = nil;
@@ -81,7 +81,7 @@
 
     // Create the directory and any intermediates
     NSError *errorReference = (error == nil) ? nil : *error;
-    if (! [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&errorReference]) {
+    if (! [[SSFileManagerFactory defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&errorReference]) {
         RKLogError(@"Failed to create requested directory at path '%@': %@", path, errorReference);
         return NO;
     }

@@ -20,7 +20,7 @@
                                                             [[path lastPathComponent] stringByDeletingPathExtension],
                                                             [path pathExtension]]];
 
-        if ([[NSFileManager defaultManager] fileExistsAtPath:path2x]) {
+        if ([[SSFileManagerFactory defaultManager] fileExistsAtPath:path2x]) {
             return [self initWithCGImage:[[UIImage imageWithData:[NSData dataWithContentsOfFile:path2x]] CGImage] scale:2.0 orientation:UIImageOrientationUp];
         }
     }

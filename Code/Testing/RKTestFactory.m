@@ -114,7 +114,7 @@ static RKTestFactory *sharedFactory = nil;
 
     [self defineFactory:RKTestFactoryDefaultNamesManagedObjectStore withBlock:^id {
         NSString *storePath = [[RKDirectory applicationDataDirectory] stringByAppendingPathComponent:RKTestFactoryDefaultStoreFilename];
-        if ([[NSFileManager defaultManager] fileExistsAtPath:storePath]) {
+        if ([[SSFileManagerFactory defaultManager] fileExistsAtPath:storePath]) {
             [RKManagedObjectStore deleteStoreInApplicationDataDirectoryWithFilename:RKTestFactoryDefaultStoreFilename];
         }
         RKManagedObjectStore *store = [RKManagedObjectStore objectStoreWithStoreFilename:RKTestFactoryDefaultStoreFilename];
@@ -209,7 +209,7 @@ static RKTestFactory *sharedFactory = nil;
 
     // Delete the store if it exists
     NSString *path = [[RKDirectory applicationDataDirectory] stringByAppendingPathComponent:RKTestFactoryDefaultStoreFilename];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+    if ([[SSFileManagerFactory defaultManager] fileExistsAtPath:path]) {
         [RKManagedObjectStore deleteStoreInApplicationDataDirectoryWithFilename:RKTestFactoryDefaultStoreFilename];
     }
 
@@ -233,10 +233,10 @@ static RKTestFactory *sharedFactory = nil;
 {
     NSError *error = nil;
     NSString *cachePath = [RKDirectory cachesDirectory];
-    BOOL success = [[NSFileManager defaultManager] removeItemAtPath:cachePath error:&error];
+    BOOL success = [[SSFileManagerFactory defaultManager] removeItemAtPath:cachePath error:&error];
     if (success) {
         RKLogDebug(@"Cleared cache directory...");
-        success = [[NSFileManager defaultManager] createDirectoryAtPath:cachePath withIntermediateDirectories:YES attributes:nil error:&error];
+        success = [[SSFileManagerFactory defaultManager] createDirectoryAtPath:cachePath withIntermediateDirectories:YES attributes:nil error:&error];
         if (!success) {
             RKLogError(@"Failed creation of cache path '%@': %@", cachePath, [error localizedDescription]);
         }

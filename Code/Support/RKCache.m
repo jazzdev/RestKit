@@ -20,6 +20,7 @@
 
 #import "RKCache.h"
 #import "RKLog.h"
+#import <sscommon/SSFileManagerFactory.h>
 
 // Set Logging Component
 #undef RKLogComponent
@@ -34,7 +35,7 @@
         _cachePath = [cachePath copy];
         _cacheLock = [[NSRecursiveLock alloc] init];
 
-        NSFileManager *fileManager = [NSFileManager defaultManager];
+        SSFileManager *fileManager = [SSFileManagerFactory defaultManager];
         NSMutableArray *pathArray = [NSMutableArray arrayWithObject:_cachePath];
         for (NSString *subDirectory in subDirectories) {
             [pathArray addObject:[_cachePath stringByAppendingPathComponent:subDirectory]];
@@ -91,7 +92,7 @@
 {
     [_cacheLock lock];
     BOOL hasEntry = NO;
-    NSFileManager *fileManager = [NSFileManager defaultManager];
+    SSFileManager *fileManager = [SSFileManagerFactory defaultManager];
     NSString *cachePath = [self pathForCacheKey:cacheKey];
     hasEntry = [fileManager fileExistsAtPath:cachePath];
     [_cacheLock unlock];
@@ -174,7 +175,7 @@
     RKLogDebug(@"Invalidating cache entry for '%@'", cacheKey);
     NSString *cachePath = [self pathForCacheKey:cacheKey];
     if (cachePath) {
-        NSFileManager *fileManager = [NSFileManager defaultManager];
+        SSFileManager *fileManager = [SSFileManagerFactory defaultManager];
         [fileManager removeItemAtPath:cachePath error:NULL];
         RKLogTrace(@"Removed cache entry at path '%@' for '%@'", cachePath, cacheKey);
     }
@@ -187,7 +188,7 @@
     if (_cachePath && subDirectory) {
         NSString *subDirectoryPath = [_cachePath stringByAppendingPathComponent:subDirectory];
         RKLogInfo(@"Invalidating cache at path: %@", subDirectoryPath);
-        NSFileManager *fileManager = [NSFileManager defaultManager];
+        SSFileManager *fileManager = [SSFileManagerFactory defaultManager];
 
         BOOL isDirectory = NO;
         BOOL fileExists = [fileManager fileExistsAtPath:subDirectoryPath isDirectory:&isDirectory];
@@ -217,7 +218,7 @@
     [_cacheLock lock];
     if (_cachePath) {
         RKLogInfo(@"Invalidating cache at path: %@", _cachePath);
-        NSFileManager *fileManager = [NSFileManager defaultManager];
+        SSFileManager *fileManager = [SSFileManagerFactory defaultManager];
 
         BOOL isDirectory = NO;
         BOOL fileExists = [fileManager fileExistsAtPath:_cachePath isDirectory:&isDirectory];

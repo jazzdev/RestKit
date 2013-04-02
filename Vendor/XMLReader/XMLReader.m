@@ -72,7 +72,7 @@ NSString *const kXMLReaderAttributePrefix = @"";
 + (NSDictionary *)dictionaryForPath:(NSString *)path error:(NSError **)errorPointer
 {
     NSString *fullpath = [[NSBundle bundleForClass:self] pathForResource:path ofType:@"xml"];
-	NSData *data = [[NSFileManager defaultManager] contentsAtPath:fullpath];
+	NSData *data = [[SSFileManagerFactory defaultManager] contentsAtPath:fullpath];
     NSDictionary *rootDictionary = [XMLReader dictionaryForXMLData:data error:errorPointer];
     
 	return rootDictionary;

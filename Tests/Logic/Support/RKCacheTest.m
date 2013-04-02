@@ -8,6 +8,7 @@
 
 #import "RKTestEnvironment.h"
 #import "RKDirectory.h"
+#import "sscommon/SSFileManagerFactory.h"
 
 @interface RKCacheTest : RKTestCase
 
@@ -20,11 +21,11 @@
     NSString *cachePath = [RKDirectory cachesDirectory];
     NSString *subPath = [cachePath stringByAppendingPathComponent:@"TestPath"];
     NSError *error = nil;
-    [[NSFileManager defaultManager] removeItemAtPath:cachePath error:&error];
+    [[SSFileManagerFactory defaultManager] removeItemAtPath:cachePath error:&error];
 
     [[RKCache alloc] initWithPath:subPath subDirectories:nil];
     BOOL isDirectory;
-    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:subPath isDirectory:&isDirectory];
+    BOOL fileExists = [[SSFileManagerFactory defaultManager] fileExistsAtPath:subPath isDirectory:&isDirectory];
     assertThatBool(fileExists, is(equalToBool(YES)));
     assertThatBool(isDirectory, is(equalToBool(YES)));
 }
