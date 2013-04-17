@@ -56,6 +56,12 @@
 + (NSArray *)objectsWithFetchRequests:(NSArray *)fetchRequests;
 
 /**
+ * Fetches all objects from a managed context via a set of fetch requests and
+ * returns all results in a single array.
+ */
++ (NSArray *)objectsWithFetchRequests:(NSArray *)fetchRequests inContext:(NSManagedObjectContext*)context;
+
+/**
  * Fetches the first object identified by the fetch request. A limit of one will be
  * applied to the fetch request before dispatching.
  */
@@ -67,6 +73,13 @@
  * of this class under management.
  */
 + (NSArray *)objectsWithPredicate:(NSPredicate *)predicate;
+
+/**
+ * Fetches all objects from a managed context by constructing a fetch request and
+ * applying the predicate supplied. A short-cut for doing filtered searches on the objects
+ * of this class under management.
+ */
++ (NSArray *)objectsWithPredicate:(NSPredicate *)predicate inContext:(NSManagedObjectContext*)context;
 
 /**
  * Fetches the first object matching a predicate from the persistent store. A fetch request

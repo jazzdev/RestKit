@@ -65,13 +65,22 @@ RK_FIX_CATEGORY_BUG(NSManagedObject_ActiveRecord)
     NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
     NSEntityDescription *entity = [self entity];
     [fetchRequest setEntity:entity];
-    return fetchRequest;
-}
+    return fetchRequest;}
 
 + (NSArray *)objectsWithFetchRequest:(NSFetchRequest *)fetchRequest
 {
     NSError *error = nil;
     NSArray *objects = [[NSManagedObjectContext contextForCurrentThread] executeFetchRequest:fetchRequest error:&error];
+    if (objects == nil) {
+        RKLogError(@"Error: %@", [error localizedDescription]);
+    }
+    return objects;
+}
+
++ (NSArray *)objectsWithFetchRequest:(NSFetchRequest *)fetchRequest inContext:(NSManagedObjectContext*)context
+{
+    NSError *error = nil;
+    NSArray *objects = [context executeFetchRequest:fetchRequest error:&error];
     if (objects == nil) {
         RKLogError(@"Error: %@", [error localizedDescription]);
     }
@@ -115,6 +124,13 @@ RK_FIX_CATEGORY_BUG(NSManagedObject_ActiveRecord)
     NSFetchRequest *fetchRequest = [self fetchRequest];
     [fetchRequest setPredicate:predicate];
     return [self objectsWithFetchRequest:fetchRequest];
+}
+
++ (NSArray *)objectsWithPredicate:(NSPredicate *)predicate inContext:(NSManagedObjectContext*)context
+{
+    NSFetchRequest *fetchRequest = [self fetchRequest];
+    [fetchRequest setPredicate:predicate];
+    return [self objectsWithFetchRequest:fetchRequest inContext:context];
 }
 
 + (id)objectWithPredicate:(NSPredicate *)predicate
